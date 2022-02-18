@@ -1,3 +1,5 @@
+window.localStorage
+
 window.addEventListener('load' , () => {
     const form = document.querySelector("#new-task-form");
     const input = document.querySelector("#new-task-input");
@@ -12,11 +14,13 @@ window.addEventListener('load' , () => {
             alert('please fill out the task')
             return;
         }
+        
         const taskEl =  document.createElement('div');
-        taskEl.classList.add('tasks');
+        taskEl.classList.add('task');
 
         const taskContentEl = document.createElement('div')
         taskContentEl.classList.add('content');
+        
         
         
         taskEl.appendChild(taskContentEl);
@@ -54,12 +58,14 @@ window.addEventListener('load' , () => {
                 taskInputEl.removeAttribute("readonly");
                 taskInputEl.focus();
                 taskEditEl.innerText = "save"
-        }else {
-            taskInputEl.setAttribute("readonly","readonly");
-            taskEditEl.innerText = "Edit";
-        }
+            }else {
+                taskInputEl.setAttribute("readonly","readonly");
+                taskEditEl.innerText = "Edit";
+            }
         });
 
-        
+        taskDeleteEl.addEventListener('click' , () => {
+            listEl.removeChild(taskEl);
+        });
     });
 });
